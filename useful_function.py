@@ -3,3 +3,6 @@ dir()
 
 help()
 # helper function
+
+bool()
+# check truthy
