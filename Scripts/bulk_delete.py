@@ -38,17 +38,15 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def del_bulk(path_without_filename,extension):
+def del_bulk(path_without_filename, extension):
+    """ Delete Bult """
     directory = path_without_filename
     success = True
     count = 0
     files = glob.glob(glob.escape(directory) + f'/**/*.{extension}', recursive=True)
     print(f"\n{files.__len__()} {extension} files found.\n")
 
-    if files.__len__() == 0:
-        return False
-    
-    if input(colorComment.warning('Are you sure? (Y/N) : ')) not in ['y', "Y", "yes"]:
+    if files.__len__() == 0 or input(colorComment.warning('Are you sure? (Y/N) : ')) not in ['y', "Y", "yes"]:
         return False
         
     start = perf_counter()
@@ -64,6 +62,7 @@ def del_bulk(path_without_filename,extension):
         else:
             print(f"{count}. {file}:  Removed successfully\n")
     end = perf_counter()
+
     if success != False:
         colorComment.success(f"\n{count} {extension} files deleted in {end - start} second/s.") 
     return None
@@ -82,9 +81,13 @@ def info(path_without_filename):
 
 if __name__ == "__main__":
     clear()
+    extension_not_allowed = ['*']
     path_without_filename = "/".join(__file__.split('/')[:-1])
     info(path_without_filename)
     ans = input("Enter the extension (srt,jpeg,mp4) : ").lower()
-    del_bulk(path_without_filename,extension=ans)
+    if ans not in extension_not_allowed:
+        del_bulk(path_without_filename, extension=ans)
+    else:
+        colorComment.danger("Not allowed")
 
 
