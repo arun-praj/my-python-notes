@@ -30,4 +30,11 @@ from collections import name
 import sys
 sys.modules
 
-sys.__file__ # see the file path
+sys.__file__  # see the file path
+
+sys.exec_info()
+# returns the tuple of current exception raised if any
+# use this in except block to see what except has been raised.
+
+
+obj.__class__.__name__  # to see what class is the object created from
