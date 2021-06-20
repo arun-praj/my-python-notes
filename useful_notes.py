@@ -9,7 +9,7 @@ help()
 bool()
 # check truthy
 
-per_counter()
+perf_counter()
 # to calculate execution time
 # from time
 
